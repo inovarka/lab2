@@ -1,4 +1,4 @@
-Шаблон для 2-гої роботи з архітектури ПЗ
+# LAB 2 (variant 3) 
 ---
 
-Використайте кнопку **"Use this template"**, щоб створити власний репозиторій.
+### Contributors : Tymofeienko Pavlo, Dmytrenko Oleksandr
