@@ -8,4 +8,5 @@ require (
 	github.com/roman-mazur/architecture-lab-2 v0.0.0-20201004160640-067ff913ee9f // indirect
 	// TODO: Change if need to use a different assertions library.
 	github.com/stretchr/testify v1.6.1
+	golang.org/x/tools v0.0.0-20201223200349-f6952e403d3f // indirect
 )
