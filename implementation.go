@@ -54,6 +54,7 @@ func (o operation) Compute() float64 {
 	return res
 }
 
+// collect and orginize information abt operands
 func parseOp(opType int, exp []string) (expression, error, []string) {
 	left, err1, rest1 := parse(exp)
 	if err1 != nil {
@@ -74,6 +75,7 @@ func parseOp(opType int, exp []string) (expression, error, []string) {
 	}, nil, rest2
 }
 
+// collect and orginize information abt operations
 func parse(input[] string) (expression, error, []string) {
 	if len(input) <= 0 {
 		return nil, errors.New("syntax error"), nil
@@ -99,6 +101,7 @@ func parse(input[] string) (expression, error, []string) {
 	}
 }
 
+// Prefix expression computing
 func ComputePrefix(input string) (float64, error) {
 	expression, err, rest := parse(strings.Split(input, " "))
 	if len(rest) > 0 {
