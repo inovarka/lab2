@@ -2,26 +2,65 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	lab2 "github.com/roman-mazur/architecture-lab-2"
+	"io"
+	"io"
+	"os"
+	"strings"
+
+	lab2 "github.com/inovarka/lab2"
 )
+
 
 var (
 	inputExpression = flag.String("e", "", "Expression to compute")
-	// TODO: Add other flags support for input and output configuration.
+	inputFile       = flag.String("f", "", "Read the expressions from file")
+	resultFile      = flag.String("o", "", "Write result to file")
 )
 
 func main() {
 	flag.Parse()
 
-	// TODO: Change this to accept input from the command line arguments as described in the task and
-	//       output the results using the ComputeHandler instance.
-	//       handler := &lab2.ComputeHandler{
-	//           Input: {construct io.Reader according the command line parameters},
-	//           Output: {construct io.Writer according the command line parameters},
-	//       }
-	//       err := handler.Compute()
+	var (
+		inp io.Reader
+		outp io.Writer
+		err error
+	)
 
-	res, _ := lab2.PrefixToPostfix("+ 2 2")
-	fmt.Println(res)
+
+	if *inputFile != "" {
+		inp, err = os.Open(*inputFile)
+		if err != nil {
+			os.Stderr.WriteString("unable to open the file")
+			return
+		}
+	} else {
+		inp = strings.NewReader(*inputExpression)
+	}
+
+
+	if *resultFile != "" {
+		outp, err = os.Create(*resultFile)
+		if err != nil {
+			os.Stderr.WriteString("Unable to create the file")
+			return
+		}
+	} else {
+		outp = os.Stdout
+	}
+
+
+
+	handler := &lab2.ComputeHandler{
+		Input: inp,
+		Output: outp,
+	}
+
+
+	err = handler.Compute()
+	if  err != nil {
+		os.Stderr.WriteString(err.Error())
+	}
+	
+	
 }
+
