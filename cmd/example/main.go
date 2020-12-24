@@ -3,13 +3,11 @@ package main
 import (
 	"flag"
 	"io"
-	"io"
 	"os"
 	"strings"
 
 	lab2 "github.com/inovarka/lab2"
 )
-
 
 var (
 	inputExpression = flag.String("e", "", "Expression to compute")
@@ -21,11 +19,10 @@ func main() {
 	flag.Parse()
 
 	var (
-		inp io.Reader
+		inp  io.Reader
 		outp io.Writer
-		err error
+		err  error
 	)
-
 
 	if *inputFile != "" {
 		inp, err = os.Open(*inputFile)
@@ -37,7 +34,6 @@ func main() {
 		inp = strings.NewReader(*inputExpression)
 	}
 
-
 	if *resultFile != "" {
 		outp, err = os.Create(*resultFile)
 		if err != nil {
@@ -48,19 +44,14 @@ func main() {
 		outp = os.Stdout
 	}
 
-
-
 	handler := &lab2.ComputeHandler{
-		Input: inp,
+		Input:  inp,
 		Output: outp,
 	}
 
-
 	err = handler.Compute()
-	if  err != nil {
+	if err != nil {
 		os.Stderr.WriteString(err.Error())
 	}
-	
-	
-}
 
+}
