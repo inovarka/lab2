@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"io"
+	"io/ioutil"
 	"os"
 	"strings"
 
@@ -25,11 +26,12 @@ func main() {
 	)
 
 	if *inputFile != "" {
-		inp, err = os.Open(*inputFile)
+		str, err := ioutil.ReadFile(*inputFile)
 		if err != nil {
 			os.Stderr.WriteString("unable to open the file")
 			return
 		}
+		inp = strings.NewReader(string(str))
 	} else {
 		inp = strings.NewReader(*inputExpression)
 	}

@@ -1,12 +1,11 @@
 package lab2
 
 import (
-	"math"
 	"errors"
+	"math"
 	"strconv"
 	"strings"
 )
-
 
 type expression interface {
 	Compute() float64
@@ -76,7 +75,7 @@ func parseOp(opType int, exp []string) (expression, error, []string) {
 }
 
 // collect and orginize information abt operations
-func parse(input[] string) (expression, error, []string) {
+func parse(input []string) (expression, error, []string) {
 	if len(input) <= 0 {
 		return nil, errors.New("syntax error"), nil
 	}
@@ -101,8 +100,7 @@ func parse(input[] string) (expression, error, []string) {
 	}
 }
 
-
-// Prefix expression computing
+// ComputePrefix expression computing
 func ComputePrefix(input string) (float64, error) {
 	expression, err, rest := parse(strings.Split(input, " "))
 	if len(rest) > 0 {
