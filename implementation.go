@@ -101,6 +101,7 @@ func parse(input[] string) (expression, error, []string) {
 	}
 }
 
+
 // Prefix expression computing
 func ComputePrefix(input string) (float64, error) {
 	expression, err, rest := parse(strings.Split(input, " "))
